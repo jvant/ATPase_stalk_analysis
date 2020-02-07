@@ -1,0 +1,10 @@
+
+set selections(1) "(segname PROG and resid 345 to 363)"
+set selections(2) "(segname PROG and resid 43 to 48 340 to 344)"
+set selections(3) "(segname PROG and resid 49 to 55 333 to 339)"
+set selections(4) "(segname PROG and resid 56 to 62 326 to 332)"
+set selections(5) "(segname PROG and resid 63 to 69 319 to 325)"
+set selections(6) "(segname PROG and resid 70 to 77 312 to 318)"
+set selections(7) "(segname PROG and resid 78 to 84 305 to 311)"
+set selections(8) "(segname PROG and resid 85 to 91 298 to 304)"
+set selections(9) "(segname PROG and resid 92 to 101 288 to 297)"

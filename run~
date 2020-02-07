@@ -1,0 +1,3 @@
+#!/bin/bash
+
+vmd -dispdev text -e /shared/ATPase_analysis/Modulus_Scripts/ModMaster.tcl
