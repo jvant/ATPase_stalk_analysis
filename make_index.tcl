@@ -23,7 +23,12 @@ topology /home/jvant/Documents/toppar/top_all36_prot.rtf
 #set oldpsf [glob *psf]
 set oldpsf [lindex $argv 0]
 set olddcd [lindex $argv 1]
+set wd [lindex $argv 2]
+set topdir [pwd]
 set newpsf my.psf
+
+cd $wd
+
 mol new $oldpsf
 mol addfile $olddcd first 0 last 0 waitfor all
 
@@ -57,44 +62,11 @@ foreach i $indices {
 flush $file 
 close $file 
 
-# set nseg 1
-# set chains [lsort -unique [$sel1 get segid]]
-# puts "$chains"
-# foreach ch $chains {
-    
-#     set selch [atomselect top "segid $ch"]
-#     $selch writepdb chain_$ch.pdb
-# }
-
-# foreach ch $chains {
-#     set segid V$nseg
-#     segment $segid {
-# 	first NONE
-# 	last NONE
-# 	pdb chain_$ch.pdb
-#     }
-#     coordpdb chain_$ch.pdb $segid
-#     incr nseg
-# }
-
-# guesscoord
-# writepsf my.psf
-# writepdb my.pdb
-
-# readpsf $oldpsf
-# coordpdb tmp.pdb
-
-
-# foreach segid [lsort -unique [$sel2 get segid]] {
-#     foreach resid [lsort -unique [$sel2 get resid]] {
-# 	foreach atomname [lsort -unique [$sel2 get name]] { 
-#             delatom $segid $resid $atomname
-# 	}
-#     }
-# }
-
 puts "Writing your new psf!!!!"
 $sel1 writepsf my.psf
+
+cd $topdir
+
 exit
 
 
