@@ -1,0 +1,16 @@
+#!/bin/bash
+
+path="/local/jvant/ATPase_analysis"
+scriptpath="/local/jvant/ATPase_analysis/Modulus_Scripts/"
+
+for sys in 0-whole_atp 2-cutIJ-noHchain_atp 4-whole-disu_atp \
+    1-cutIJ_atp 3-F1head-fixed_atp 5-cutIJ-disu_atp
+do
+    cd $path/$sys
+    psf=$(find ./ -name "my.psf" -type f)
+
+    vmd -dispdev text \
+	-e $scriptpath/color_tors_mod.tcl \
+	-args $path/$sys $psf wo_water_all.dcd
+
+done

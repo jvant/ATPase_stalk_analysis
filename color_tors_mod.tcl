@@ -34,20 +34,20 @@ source selections
 # Read in data file
 set openfile [open "$data_file" r]
 set data [read $openfile]
-set new [split $data]
 
-# set beta = 0
 set sel_all [atomselect top all]
 $sel_all set beta 0
 
-echo "enter loop"
-
+puts "enter loop"
 # start for loop to set beta values for each section defined above
-for {set i 1} {$i <= $numsect} {incr i} {
-    regsub .{5}$ [lindex $new [expr $i * 2 - 1]] {} new_var
-    echo $new_var
-    $Pt($i) set beta [lindex $new_var ]
+set count 0
+foreach name [lsort [array names selections]] {
+    
+    set sel [atomselect top "$selections($name)"]
+    $sel set beta [lindex $data $count]
+    incr count
 }
 
 $sel_all writepsf beta_colored.psf
 $sel_all writepdb beta_colored.pdb
+exit
