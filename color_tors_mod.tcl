@@ -16,27 +16,22 @@
 #                            Parameters
 #
 # Input structure name below
-set psf [glob ../3-fixedf1head_Summit/*psf]
-set pdb [glob ../3-fixedf1head_Summit/chain_A-H_fixed.pdb]
+set wd [lindex $argv 0]
+set psf [lindex $argv 1]
+set dcd [lindex $argv 2]
+
+cd $wd
 
 mol new $psf
-mol addfile $pdb
+mol addfile $dcd first 0 last 0
 
 # set name of the data file
-set data_file torsional_kmods.txt
+set data_file PCA.dat
 
 # Number of sections defining angles
-set numsect 8
+source selections
 
-for {set i 0} {$i < $numsect} {incr i} {
-    set k [expr $i + 1]
-    set bound(up) [expr 151 - $i * 14]
-    set bound(low) [expr 151 - $k * 14]
-    set "Pt($k)" [atomselect top "segname PROG and not resid 101 to 287 and (z > $bound(low) and z < $bound(up) )"]
-    puts $Pt($k)
-}
 # Read in data file
-
 set openfile [open "$data_file" r]
 set data [read $openfile]
 set new [split $data]
