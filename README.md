@@ -9,6 +9,6 @@ $ /path/to/exec/vmd -dispdev text -e MasterMod.tcl -args -psf <psffile> -dcd <dc
 
 Run the executable pca.py to perform a principle component analysis dimentional reduction.
 
-./pca.py
+$ ./pca.py
 
 More functionality is coming soon.
